@@ -20,6 +20,23 @@ jobs:
           mkdir project
           unzip -q MangaRu-Android-0.2-fixed.zip -d project
 
-  push:
-    branches:
-      - main
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: "8.10"
+
+      - name: Build APK
+        working-directory: project/MangaRuAndroid
+        run: gradle assembleDebug --stacktrace
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: MangaRu-debug
+          path: project/MangaRuAndroid/app/build/outputs/apk/debug/app-debug.apk
