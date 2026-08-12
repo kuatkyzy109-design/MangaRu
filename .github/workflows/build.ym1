@@ -1,0 +1,21 @@
+name: Build MangaRu APK
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "MangaRu-Android-0.2-fixed.zip"
+      - ".github/workflows/build.yml"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download project
+        uses: actions/checkout@v4
+
+      - name: Extract MangaRu project
+        run: |
+          mkdir project
+          unzip -q MangaRu-Android-0.2-fixed.zip -d project
