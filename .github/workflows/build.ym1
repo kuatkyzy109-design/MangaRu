@@ -1,4 +1,4 @@
-name: Build MangaRu APK
+Iname: Build MangaRu APK
 
 on:
   workflow_dispatch:
@@ -19,3 +19,6 @@ jobs:
         run: |
           mkdir project
           unzip -q MangaRu-Android-0.2-fixed.zip -d project
+  push:
+    branches:
+      - main
